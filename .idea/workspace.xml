@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6b6c43a-7c40-476b-9aeb-0c0ecc07a9cc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BibliotecaProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/BibliotecaMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/css/estilos.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/gui/BibliotecaGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/model/Bibliotecario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/model/Gestionable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/model/Libro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/model/Persona.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/model/Prestamo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biblioteca/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/biblioteca/gui/BibliotecaGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/biblioteca/gui/BibliotecaGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/biblioteca/model/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/biblioteca/model/Bibliotecario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/biblioteca/model/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/biblioteca/model/Libro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/biblioteca/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/biblioteca/model/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,20 +39,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BibliotecaGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.BibliotecaProjectFx.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/javafx-sdk-22.0.2/lib/javafx.web.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BibliotecaGUI.executor": "Run",
+    "Application.BibliotecaProjectFx.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Program Files/Java/javafx-sdk-22.0.2/lib/javafx.web.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "vcs.Git"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="BibliotecaProjectFx" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="biblioteca.gui.BibliotecaGUI" />
@@ -85,5 +74,16 @@
       <updated>1726169452770</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

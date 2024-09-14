@@ -17,9 +17,12 @@ import java.util.Date;
 
 public class BibliotecaGUI extends Application {
 
+    // Listas para almacenar libros, usuarios y préstamos
     private ArrayList<Libro> libros;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Prestamo> prestamos;
+
+    // Controles de la interfaz
     private ComboBox<Libro> libroComboBox;
     private ComboBox<Usuario> usuarioComboBox;
     private TextField bibliotecarioNombreTextField;
@@ -29,19 +32,20 @@ public class BibliotecaGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // Inicialización de las listas
         libros = new ArrayList<>();
         usuarios = new ArrayList<>();
         prestamos = new ArrayList<>();
 
         primaryStage.setTitle("Gestión de Biblioteca");
 
-        // Panel principal
+        // Panel principal usando GridPane para disposición de componentes
         GridPane panel = new GridPane();
-        panel.setVgap(15);
-        panel.setHgap(10);
-        panel.setStyle("-fx-padding: 20; -fx-background-color: #f0f0f0;");
+        panel.setVgap(15);  // Espaciado vertical
+        panel.setHgap(10);  // Espaciado horizontal
+        panel.setStyle("-fx-padding: 20; -fx-background-color: #f0f0f0;");  // Estilo de padding y color de fondo
 
-        // Campos de entrada
+        // Campos de entrada y botones
         TextField buscarLibroField = new TextField();
         buscarLibroField.setPromptText("Buscar libro...");
 
@@ -54,31 +58,31 @@ public class BibliotecaGUI extends Application {
         TextField isbnLibroField = new TextField();
         Button agregarLibroBtn = new Button("Agregar Libro");
 
-        // Comboboxes para selección de libros y usuarios
+        // Comboboxes para seleccionar libros y usuarios
         libroComboBox = new ComboBox<>();
         usuarioComboBox = new ComboBox<>();
 
-        // Campos para ingresar el bibliotecario
+        // Campos para ingresar datos del bibliotecario
         bibliotecarioNombreTextField = new TextField();
         bibliotecarioApellidoTextField = new TextField();
 
         // Botones para prestar y devolver libros
         Button btnPrestar = new Button("Prestar Libro");
-        btnPrestar.setId("prestarLibro");  // Asigna un ID único
+        btnPrestar.setId("prestarLibro");  // Asigna un ID único para referencia
         Button btnDevolver = new Button("Devolver Libro");
-        btnDevolver.setId("devolverLibro");  // Asigna un ID único
+        btnDevolver.setId("devolverLibro");  // Asigna un ID único para referencia
 
-        // Crear un HBox para agrupar los botones
-        HBox botonesPrestarDevolver = new HBox(20);  // 20 es el espaciado entre botones
+        // Crear un HBox para agrupar los botones de prestar y devolver
+        HBox botonesPrestarDevolver = new HBox(20);  // Espaciado de 20 unidades entre botones
         botonesPrestarDevolver.getChildren().addAll(btnPrestar, btnDevolver);
 
         // Área de texto para mostrar resultados
         textArea = new TextArea();
-        textArea.setEditable(false);
-        textArea.setPrefHeight(300);
-        textArea.setPrefWidth(600);
+        textArea.setEditable(false);  // No editable por el usuario
+        textArea.setPrefHeight(300);  // Altura preferida
+        textArea.setPrefWidth(600);   // Anchura preferida
 
-        // Tabla de inventario
+        // Configuración de la tabla de inventario
         inventarioTable = new TableView<>();
         TableColumn<Libro, String> tituloCol = new TableColumn<>("Título");
         tituloCol.setCellValueFactory(new PropertyValueFactory<>("titulo"));
@@ -88,7 +92,7 @@ public class BibliotecaGUI extends Application {
         estadoCol.setCellValueFactory(cellData -> {
             boolean disponible = cellData.getValue().isDisponible();
             return new SimpleStringProperty(disponible ? "Disponible" : "Prestado");
-        });
+        }); // Columna para estado del libro
         inventarioTable.getColumns().addAll(tituloCol, autorCol, estadoCol);
 
         // Agregar componentes al panel
@@ -116,33 +120,35 @@ public class BibliotecaGUI extends Application {
         panel.add(isbnLibroField, 1, 11);
         panel.add(agregarLibroBtn, 1, 12);
 
-        // Listeners de botones
+        // Configuración de los eventos de los botones
         btnPrestar.setOnAction(e -> realizarPrestamo());
         btnDevolver.setOnAction(e -> devolverLibro());
         agregarUsuarioBtn.setOnAction(e -> agregarUsuario(nombreUsuarioField, apellidoUsuarioField));
         agregarLibroBtn.setOnAction(e -> agregarLibro(tituloLibroField, autorLibroField, isbnLibroField));
 
+        // Listener para buscar libros en tiempo real
         buscarLibroField.textProperty().addListener((observable, oldValue, newValue) -> filtrarLibros(newValue));
 
-        // Crear layout y agregar componentes
+        // Crear el layout principal y agregar componentes
         HBox root = new HBox(10);
         root.getChildren().addAll(panel, new ScrollPane(textArea), inventarioTable);
 
         // Configurar la escena
         Scene scene = new Scene(root, 1200, 600);
 
-        // Enlace de archivo CSS
+        // Enlazar archivo CSS para estilos
         scene.getStylesheets().add(getClass().getResource("/biblioteca/css/estilos.css").toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // Agregar datos de prueba
+        // Agregar datos de prueba y actualizar inventario
         agregarDatosPrueba();
         actualizarInventario();
     }
 
     private void realizarPrestamo() {
+        // Obtener datos de la interfaz
         Libro libroSeleccionado = libroComboBox.getValue();
         Usuario usuarioSeleccionado = usuarioComboBox.getValue();
         String nombreBibliotecario = bibliotecarioNombreTextField.getText();
@@ -154,6 +160,7 @@ public class BibliotecaGUI extends Application {
                 return;
             }
 
+            // Validar datos y realizar préstamo
             if (libroSeleccionado.isDisponible()) {
                 Date fechaPrestamo = new Date();
                 Date fechaTentativaDevolucion = new Date(fechaPrestamo.getTime() + (14L * 24 * 60 * 60 * 1000));
@@ -176,9 +183,11 @@ public class BibliotecaGUI extends Application {
     }
 
     private void devolverLibro() {
+        // Obtener datos de la interfaz
         Libro libroSeleccionado = libroComboBox.getValue();
         Usuario usuarioSeleccionado = usuarioComboBox.getValue();
 
+        // Validar datos y procesar devolución
         if (libroSeleccionado != null && usuarioSeleccionado != null) {
             Prestamo prestamo = buscarPrestamo(usuarioSeleccionado, libroSeleccionado);
             if (prestamo != null && !libroSeleccionado.isDisponible()) {
@@ -197,6 +206,7 @@ public class BibliotecaGUI extends Application {
     }
 
     private void agregarUsuario(TextField nombre, TextField apellido) {
+        // Validar campos y agregar usuario
         if (nombre.getText().isEmpty() || apellido.getText().isEmpty()) {
             mostrarAlerta("Error", "Todos los campos de usuario son requeridos.", AlertType.ERROR);
             return;
@@ -213,6 +223,7 @@ public class BibliotecaGUI extends Application {
     }
 
     private void agregarLibro(TextField titulo, TextField autor, TextField isbn) {
+        // Validar campos y agregar libro
         if (titulo.getText().isEmpty() || autor.getText().isEmpty() || isbn.getText().isEmpty()) {
             mostrarAlerta("Error", "Todos los campos del libro son requeridos.", AlertType.ERROR);
             return;
@@ -231,6 +242,7 @@ public class BibliotecaGUI extends Application {
     }
 
     private void filtrarLibros(String filtro) {
+        // Filtrar libros en el ComboBox basado en el texto de búsqueda
         libroComboBox.getItems().clear();
         for (Libro libro : libros) {
             if (libro.getTitulo().toLowerCase().contains(filtro.toLowerCase())) {
@@ -239,6 +251,7 @@ public class BibliotecaGUI extends Application {
         }
     }
 
+    // Crear y agregar usuarios de prueba
     private void agregarDatosPrueba() {
         Usuario usuario1 = new Usuario("Juan", "Pérez");
         Usuario usuario2 = new Usuario("Ana", "Martínez");
@@ -248,6 +261,7 @@ public class BibliotecaGUI extends Application {
 
         usuarioComboBox.getItems().addAll(usuario1, usuario2);
 
+        // Crear y agregar libros de prueba
         Libro libro1 = new Libro("Cien Años de Soledad", "Gabriel García Márquez", "1234567890");
         Libro libro2 = new Libro("Don Quijote", "Miguel de Cervantes", "0987654321");
         Libro libro3 = new Libro("1984", "George Orwell", "1122334455");
