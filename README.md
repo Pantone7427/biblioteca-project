@@ -50,7 +50,7 @@ La aplicación de **Gestión de Biblioteca** permite gestionar libros, usuarios 
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/tu-usuario/gestion-biblioteca.git
+   git clone https://github.com/Pantone7427/biblioteca-project.git
 2. Abrir el proyecto en IntelliJ IDEA.
 3. Ejecutar la clase `BibliotecaGUI.java` que se encuentra en el paquete `biblioteca.gui`.
 4. Interactuar con la interfaz gráfica para realizar préstamos y devoluciones de libros.
